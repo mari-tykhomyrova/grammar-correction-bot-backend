@@ -1,0 +1,18 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prismaService-schema
+
+generator client {
+  provider = "prismaService-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Correction {
+  id            String      @id @default(uuid())
+  original      String      @unique
+  corrected     String
+  created_at    DateTime    @default(now())
+}
